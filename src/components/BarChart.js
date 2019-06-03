@@ -39,6 +39,12 @@ class BarChart extends Component {
                     fill: false,
                     lineTension: 0,
                 },
+                {
+                    label: '',
+                    data: [],
+                    fill: false,
+                    lineTension: 0,
+                },
 
             ]
         }
@@ -66,7 +72,7 @@ class BarChart extends Component {
   render () {
     return (
       <>
-        <h1>Tonus Mood EQ</h1>
+        <h1>Music Mood EQ</h1>
         <canvas id="moods" width="300" height="100"></canvas>
       </>
     )
