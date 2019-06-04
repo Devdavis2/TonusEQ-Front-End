@@ -11,16 +11,14 @@ class PieChart extends Component {
     getData() {
         fetch('/tonus_eqs')
         .then(response => response.json())
-        // .then(json => console.log(json))
-        // .catch(err => console.log(err))
         .then(jData => this.preparedData(jData))  
         .then(data => this.createChart(data))
     }
 
     createChart(data) {
-        const ctx = document.querySelector('#moods')
+        const ctx2 = document.querySelector('#moodsPie')
  
-        const moodsChart = new Chart(ctx, {
+        const moodsChart = new Chart(ctx2, {
             type: 'pie',
             data: data
         })
@@ -29,7 +27,8 @@ class PieChart extends Component {
     preparedData (data) {
         const chartData = {
             labels: [],
-            datasets: [],
+            datasets: [
+            ],
             
         }
 
@@ -66,6 +65,19 @@ class PieChart extends Component {
         data: 0    
         }
 
+
+        window.onload = function(){
+            window.onload = function () {
+                window.myRadar = new Chart(document.getElementById("canvas2").getContext("2d")).Radar(chartData, {
+                    responsive: true
+                });
+            var ctx2 = document.getElementById("canvas").getContext("2d");
+            window.myPie = new Chart(ctx2).Pie(chartData, {
+                responsive : true
+            });
+        }
+    }
+
     // START OF FOR LOOP
     data.forEach( (genre, i) => {
         // obj.label = genre.genre
@@ -98,19 +110,6 @@ class PieChart extends Component {
     // MUSIC CHART LABEL
     // chartData.datasets.obj.label = genre.genre
     chartData.datasets.legend = genre.genre
-
-
-    // // START OF NESTED LOOP (MOOD DATA)
-    // genre.moods.forEach((moods, j) => {
-    // chartData.labels.push(moods.mood_state)
-    // console.log(data);
-    // const obj_in_Datasets = {label: [], data: []}
-    
-    // obj_in_Datasets.label.push(genre.moods[0].mood_state)
-    // obj_in_Datasets.data.push(genre.moods[0].mood_duration)
-    // chartData.datasets.push(obj_in_Datasets)
-    // console.log(genre.moods);
-    // })
     })
 
     let obj_in_Datasets = {label: [], data: []}
@@ -150,11 +149,24 @@ class PieChart extends Component {
     return (
       <>
       <br></br>
-        <h5>Mood Duration</h5>
-        <canvas id="moods" width="300" height="100"></canvas>
+        <h5 className="lime accent-2">Mood State Percent</h5>
+        <canvas id="moodsPie" width="300" height="100"></canvas>
       </>
     )
   }
 }
 
 export default PieChart;
+
+// Unused code
+//     // // START OF NESTED LOOP (MOOD DATA)
+    // genre.moods.forEach((moods, j) => {
+    // chartData.labels.push(moods.mood_state)
+    // console.log(data);
+    // const obj_in_Datasets = {label: [], data: []}
+    
+    // obj_in_Datasets.label.push(genre.moods[0].mood_state)
+    // obj_in_Datasets.data.push(genre.moods[0].mood_duration)
+    // chartData.datasets.push(obj_in_Datasets)
+    // console.log(genre.moods);
+    // })

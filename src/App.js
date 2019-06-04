@@ -39,8 +39,8 @@ render (){
     <div className="container">
     <h1>Music EQ</h1>
     <Playlist genre = {this.state.genre} />
+    <PieChart/>
     <BarChart/>
-    {/* <PieChart/> */}
     </div>
     </div>
   );

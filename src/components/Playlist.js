@@ -18,7 +18,7 @@ constructor (props) {
        
         return (
             <div className="playlist">
-        <h5>Playlist</h5>
+        <h5 className="lime accent-2">Playlist</h5>
        
         
         <table>

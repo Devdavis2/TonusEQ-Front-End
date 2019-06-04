@@ -66,6 +66,13 @@ class BarChart extends Component {
         data: 0    
         }
 
+        // window.onload = function(){
+        //     var ctx = document.getElementById("canvas").getContext("2d");
+        //     window.myBar = new Chart(ctx).Bar(chartData, {
+        //         responsive : true
+        //     });
+        // }
+
     // START OF FOR LOOP
     data.forEach( (genre, i) => {
         // obj.label = genre.genre
@@ -146,11 +153,13 @@ class BarChart extends Component {
     return chartData;
 }
 
+
+
   render () {
     return (
       <>
       <br></br>
-        <h5>Mood Duration</h5>
+        <h5 className="lime accent-2">Mood Duration</h5>
         <canvas id="moods" width="300" height="100"></canvas>
       </>
     )
