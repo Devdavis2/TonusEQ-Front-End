@@ -4,6 +4,7 @@ import 'materialize-css'; // Must use lines 3 & 4 to import materialize along wi
 import 'materialize-css/dist/css/materialize.min.css';
 import BarChart from './components/BarChart'
 import Playlist from './components/Playlist';
+import PieChart from './components/PieChart';
 
 class App extends Component {
   componentDidMount () {
@@ -38,7 +39,8 @@ render (){
     <div className="container">
     <h1>Music EQ</h1>
     <Playlist genre = {this.state.genre} />
-<BarChart/>
+    <BarChart/>
+    {/* <PieChart/> */}
     </div>
     </div>
   );
