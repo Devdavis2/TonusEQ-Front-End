@@ -10,16 +10,17 @@ import PieChart from './components/PieChart';
 
 let baseURL = process.env.REACT_APP_BASEURL
 
-//alternate baseURL = 'https://tonus-eq-api.herokuapp.com'
+//alternate baseURL = 'https://tonus-eq-api.herokuapp.com/tonus_eqs'
 
 if (process.env.NODE_ENV === 'development') {
   baseURL = 'http://localhost:3001'
 } else {
-  baseURL = 'https://tonus-eq-api.herokuapp.com'
+  baseURL = 'https://tonus-eq-api.herokuapp.com/tonus_eqs'
 }
 
 console.log('current base URL:', baseURL)
 
+// START OF APP
 class App extends Component {
   componentDidMount () {
     this.getData()
