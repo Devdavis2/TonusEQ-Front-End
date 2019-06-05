@@ -4,7 +4,9 @@ import 'materialize-css'; // Must use lines 3 & 4 to import materialize along wi
 import 'materialize-css/dist/css/materialize.min.css';
 import BarChart from './components/BarChart'
 import Playlist from './components/Playlist';
+import Form from './components/Form.js';
 import PieChart from './components/PieChart';
+
 
 // HEROKU BUILD PACKS
 
@@ -27,7 +29,7 @@ class App extends Component {
 }
 
 getData() {
-    fetch('/tonus_eqs')
+    fetch(baseURL)
     .then(response => response.json())
     // .then(data => data.json())
     // .catch(err => console.log(err))
@@ -54,6 +56,7 @@ render (){
     <div className="container">
     <h1>Music EQ</h1>
     <Playlist genre = {this.state.genre} />
+    <Form/>
     <PieChart/>
     <BarChart/>
     </div>
