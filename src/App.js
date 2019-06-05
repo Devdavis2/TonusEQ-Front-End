@@ -15,7 +15,7 @@ let baseURL = process.env.REACT_APP_BASEURL
 //alternate baseURL = 'https://tonus-eq-api.herokuapp.com/tonus_eqs'
 
 if (process.env.NODE_ENV === 'development') {
-  baseURL = 'http://localhost:3001'
+  baseURL = 'http://localhost:3000'
 } else {
   baseURL = 'https://tonus-eq-api.herokuapp.com/tonus_eqs'
 }
