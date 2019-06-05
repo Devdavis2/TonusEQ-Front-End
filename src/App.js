@@ -6,6 +6,20 @@ import BarChart from './components/BarChart'
 import Playlist from './components/Playlist';
 import PieChart from './components/PieChart';
 
+// HEROKU BUILD PACKS
+
+let baseURL = process.env.REACT_APP_BASEURL
+
+//alternate baseURL = 'https://tonus-eq-api.herokuapp.com'
+
+if (process.env.NODE_ENV === 'development') {
+  baseURL = 'http://localhost:3001'
+} else {
+  baseURL = 'https://tonus-eq-api.herokuapp.com'
+}
+
+console.log('current base URL:', baseURL)
+
 class App extends Component {
   componentDidMount () {
     this.getData()
