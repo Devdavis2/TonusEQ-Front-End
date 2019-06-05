@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import 'materialize-css'; // Must use lines 3 & 4 to import materialize along with npm installs
 import 'materialize-css/dist/css/materialize.min.css';
+import { Row, Col } from 'react-materialize';
 import BarChart from './components/BarChart'
 import Playlist from './components/Playlist';
 import Form from './components/Form.js';
@@ -20,7 +21,7 @@ if (process.env.NODE_ENV === 'development') {
   baseURL = 'https://tonus-eq-api.herokuapp.com/tonus_eqs'
 }
 
-console.log('current base URL:', baseURL)
+// console.log('current base URL:', baseURL)
 
 // START OF APP
 class App extends Component {
@@ -29,7 +30,7 @@ class App extends Component {
 }
 
 getData() {
-    fetch(baseURL)
+    fetch('/tonus_eqs')
     .then(response => response.json())
     // .then(data => data.json())
     // .catch(err => console.log(err))
@@ -50,17 +51,35 @@ getData() {
 }
 
 render (){
-  console.log(this.state)
+  // console.log(this.state)
   return (
-    <div className="App">
-    <div className="container">
-    <h1>Music EQ</h1>
-    <Playlist genre = {this.state.genre} />
+    <div className="App blue-grey darken-3">
+    
+    <div className="container blue-grey darken-3">
+    <Row>
+    <h1 className="white-text">Music EQ</h1>
+    <Col s={12} m={9} >
+    <Playlist genre = {this.state.genre}/>
+    </Col>
+    <Col s={12} m={3} >
     <Form/>
+    </Col>
+    </Row>
+    <Row>
+    <br></br>
+    <Col s={12} m={4} >
     <PieChart/>
-    <BarChart/>
+    </Col>
+    <Col s={12} m={8} className="grey lighten-4">
+    <BarChart />
+    <br></br>
+    </Col>
+    </Row>
     </div>
+    
+    
     </div>
+    
   );
 }
 }

@@ -9,6 +9,7 @@ constructor (props) {
         love: []
     }
     this.toggleLove = this.toggleLove.bind(this)
+    this.deleteGenre = this.deleteGenre.bind(this)
 }
 
 toggleLove(index) {
@@ -17,6 +18,23 @@ toggleLove(index) {
     this.setState({love: newLove})
   }
   
+  deleteGenre (id) {
+    //   ADD BASEURL TO FETCH "('baseURL + /tonus_eqs')"
+    fetch('/tonus_eqs' + id, {
+      method: 'DELETE'
+    }).then( response => {
+        console.log(this.props.genre);
+        
+      const findIndex = this.props.genre.findIndex(genre => genre._id === id)
+
+      const copyGenre = [...this.props.genre]
+      copyGenre.splice(findIndex, 1)
+      this.setState({genre: copyGenre})
+    })
+
+ //  ADD A NESTED DELETE/FETCH ROUTE HERE
+ 
+  }
  
     render() {
        
@@ -25,7 +43,7 @@ toggleLove(index) {
         <h5 className="lime accent-2">Playlist</h5>
        
         
-        <table>
+        <table className=" green-text">
             <thead>
                 <tr>
                     <th>Genre</th>
@@ -37,18 +55,17 @@ toggleLove(index) {
             <tbody>
 
                 {this.props.genre.length > 0 && this.props.genre.map( (genre, i) => {
-                    console.log('yghgh ',genre);
+                    // console.log(genre);
 
-                    
-                    
                     return (
-                <tr key={i} onClick={(e)=> this.toggleLove(i)}>
+                <tr key={i._id} onClick={(e)=> this.toggleLove(i)}>
 
                     <td>{genre.genre}</td>
                     <td>{genre.artist}</td>
                     <td>{genre.song}</td>
                     <td>{genre.moods[0].mood_state}</td>
                     {this.state.love[i] ? <td>&hearts;</td> : <td></td>}
+                    <td onClick={()=>this.deleteGenre(i._id)}>x</td>
                 </tr>
                     )
                 })}

@@ -64,7 +64,11 @@ class BarChart extends Component {
         obj.sad = {
         label: '',
         data: 0    
-        }
+    }
+    obj.focused = {
+        label: '',
+        data: 0    
+    }
 
         // window.onload = function(){
         //     var ctx = document.getElementById("canvas").getContext("2d");
@@ -100,6 +104,10 @@ class BarChart extends Component {
             obj.sad.data += genre.moods[0].mood_duration
          }
 
+         else if (genre.moods[0].mood_state === "Focused") {
+            obj.creative.label = genre.moods[0].mood_state
+            obj.creative.data += genre.moods[0].mood_duration
+        }
         //  console.log(obj.sad);
     
     // MUSIC CHART LABEL
@@ -148,6 +156,12 @@ class BarChart extends Component {
 
     obj_in_Datasets.label.push(obj.sad.label)
     obj_in_Datasets.data.push(obj.sad.data)
+    chartData.datasets.push(obj_in_Datasets)
+
+    obj_in_Datasets = {label: [], data: []}
+
+    obj_in_Datasets.label.push(obj.focused.label)
+    obj_in_Datasets.data.push(obj.focused.data)
     chartData.datasets.push(obj_in_Datasets)
 
     return chartData;
