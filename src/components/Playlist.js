@@ -6,13 +6,17 @@ class Playlist extends Component {
 constructor (props) {
     super(props)
     this.state = {
-        genre: '',
-        artist: '',
-        songs: '',
-        mood_state: '',
+        love: []
     }
+    this.toggleLove = this.toggleLove.bind(this)
 }
 
+toggleLove(index) {
+    const newLove = this.state.love
+    newLove[index] = !newLove[index]
+    this.setState({love: newLove})
+  }
+  
  
     render() {
        
@@ -38,12 +42,13 @@ constructor (props) {
                     
                     
                     return (
-                <tr key={i}>
+                <tr key={i} onClick={(e)=> this.toggleLove(i)}>
 
                     <td>{genre.genre}</td>
                     <td>{genre.artist}</td>
                     <td>{genre.song}</td>
                     <td>{genre.moods[0].mood_state}</td>
+                    {this.state.love[i] ? <td>&hearts;</td> : <td></td>}
                 </tr>
                     )
                 })}
