@@ -3,75 +3,59 @@ import React, { Component } from 'react';
 
 
 class Playlist extends Component {
-constructor (props) {
-    super(props)
-    this.state = {
-        love: []
+    constructor(props) {
+        super(props)
+        this.state = {
+            love: []
+        }
+        this.toggleLove = this.toggleLove.bind(this)
+
     }
-    this.toggleLove = this.toggleLove.bind(this)
-    this.deleteGenre = this.deleteGenre.bind(this)
-}
 
-toggleLove(index) {
-    const newLove = this.state.love
-    newLove[index] = !newLove[index]
-    this.setState({love: newLove})
-  }
-  
-  deleteGenre (id) {
-    //   ADD BASEURL TO FETCH "('baseURL + /tonus_eqs')"
-    fetch('/tonus_eqs' + id, {
-      method: 'DELETE'
-    }).then( response => {
-        console.log(this.props.genre);
-        
-      const findIndex = this.props.genre.findIndex(genre => genre._id === id)
+    toggleLove(index) {
+        const newLove = this.state.love
+        newLove[index] = !newLove[index]
+        this.setState({ love: newLove })
+    }
 
-      const copyGenre = [...this.props.genre]
-      copyGenre.splice(findIndex, 1)
-      this.setState({genre: copyGenre})
-    })
 
- //  ADD A NESTED DELETE/FETCH ROUTE HERE
- 
-  }
- 
+
     render() {
-       
+
         return (
             <div className="playlist">
-        <h5 className="lime accent-2">Playlist</h5>
-       
-        
-        <table className=" green-text">
-            <thead>
-                <tr>
-                    <th>Genre</th>
-                    <th>Artist</th>
-                    <th>Song</th>
-                    <th>Mood</th>
-                </tr>
-            </thead>
-            <tbody>
+                <h5 className="lime accent-2">Dope Tracks </h5>
 
-                {this.props.genre.length > 0 && this.props.genre.map( (genre, i) => {
-                    // console.log(genre);
 
-                    return (
-                <tr key={i._id} onClick={(e)=> this.toggleLove(i)}>
+                <table className=" white-text">
+                    <thead>
+                        <tr>
+                            <th>Genre</th>
+                            <th>Artist</th>
+                            <th>Song</th>
+                            <th>Mood</th>
+                        </tr>
+                    </thead>
+                    <tbody>
 
-                    <td>{genre.genre}</td>
-                    <td>{genre.artist}</td>
-                    <td>{genre.song}</td>
-                    <td>{genre.moods[0].mood_state}</td>
-                    {this.state.love[i] ? <td>&hearts;</td> : <td></td>}
-                    <td onClick={()=>this.deleteGenre(i._id)}>x</td>
-                </tr>
-                    )
-                })}
-    
-     </tbody> 
-        </table>
+                        {this.props.genre.length > 0 && this.props.genre.map((genre, i) => {
+                            // console.log(genre);
+
+                            return (
+    <tr key={genre.id} onClick={(e) => this.toggleLove(i)}>
+
+<td>{genre.genre}</td>
+    <td>{genre.artist}</td>
+        <td>{genre.song}</td>
+        <td>{genre.moods[0].mood_state}</td>
+{this.state.love[i] ? <td>&hearts;</td> : <td></td>}
+    <td onClick={() => this.props.deleteGenre(genre.id)}>x</td>
+    </tr>
+                            )
+                        })}
+
+                    </tbody>
+                </table>
             </div>
         )
     }

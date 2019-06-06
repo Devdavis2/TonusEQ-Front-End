@@ -13,17 +13,22 @@ class Form extends React.Component {
               mood_duration: '',
               mood_duration_percentage: '',
           }
-
-this.handleChange = this.handleChange.bind(this)
-this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
+          this.handleChange = this.handleChange.bind(this)
         }
     
+
+
+
+
+
+
 handleSubmit(event) {
     // console.log("moods");
     event.preventDefault()
     console.log(this.state);
     let Songs = {};
-
+  
     Songs.genre = this.state.genre
     Songs.artist = this.state.artist
     Songs.song = this.state.song
@@ -40,8 +45,8 @@ handleSubmit(event) {
             'Accept': 'application/json, text/plan, */*',
             'Content-Type': 'application/json'
         }
-
-
+  
+  
     })
     .then(createdSongs => {
     return createdSongs.json()
@@ -49,14 +54,14 @@ handleSubmit(event) {
     .then(jsonedSongs => {
         console.log(jsonedSongs.id);
     
-//         // Add 2nd fetch here
-
-let Moods = {};
-
-Moods.mood_state = this.state.mood_state
-Moods.mood_duration = this.state.mood_duration
-Moods.mood_duration_percentage = this.state.mood_duration_percentage
-
+  //         // Add 2nd fetch here
+  
+  let Moods = {};
+  
+  Moods.mood_state = this.state.mood_state
+  Moods.mood_duration = this.state.mood_duration
+  Moods.mood_duration_percentage = this.state.mood_duration_percentage
+  
     event.preventDefault()
     fetch
     (`http://localhost:3000/tonus_eqs/${jsonedSongs.id}/moods`,
@@ -67,14 +72,14 @@ Moods.mood_duration_percentage = this.state.mood_duration_percentage
             'Accept': 'application/json, text/plan, */*',
             'Content-Type': 'application/json'
         }
-
+  
     })
     .then(createdMoods => {
     return createdMoods.json()
     })
     .then(jsonedMoods => {
         console.log(jsonedMoods);
-
+  
         this.setState({
             genre: '',
             artist: '',
@@ -85,30 +90,22 @@ Moods.mood_duration_percentage = this.state.mood_duration_percentage
         })
     })
     .catch(error => console.log(error));
-})
-}
+  })
+  }
 
-
-
-handleChange(event) {
-    event.preventDefault()
-    
-    // console.log(this.state);
-    // console.log(event.target.id)
-    // console.log(event.target.value)
-    
+  handleChange(event) {
+    event.preventDefault()   
     this.setState({
         [event.target.id]: event.target.value
-    })
-        
-        
+    })       
 }
 
 render() {
     return (
 
         <form onSubmit={this.handleSubmit}>
-               <h5>Update your playlist and mood!</h5>
+               <h5 className="white-text">Update your playlist & mood!</h5>
+               <h6 className="lime accent-2 black-text">Songs</h6>
             <Input
                 handleChange={this.handleChange}
                 name={'genre'}
@@ -134,7 +131,7 @@ render() {
                 id={'song'}
             />
 
-<input className='btn lime accent-2 black-text'type='submit' value="Update your playlist!" />
+<h6 className="lime accent-2 black-text">Mood State</h6>
 
             <Input
                 handleChange={this.handleChange}
@@ -161,7 +158,7 @@ render() {
                 value={this.state.mood_duration_percentage}
                 id={'mood_duration_percentage'}
             />
-            <input className='btn lime accent-2 black-text'type='submit' value="Update your mood!" />
+            <input className='btn lime accent-2 black-text'type='submit' value="Add" />
         </form>
 
     )
