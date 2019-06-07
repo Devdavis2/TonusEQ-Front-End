@@ -2,10 +2,9 @@ import React from 'react'
 import Input from './Input.js'
 // import { Row } from 'react-materialize';
 
-class Form extends React.Component {
+class Edit_Form extends React.Component {
     constructor(props) {
         super(props)
-        console.log(this.props.song);
         this.state = {
            
               genre: '',
@@ -28,19 +27,22 @@ class Form extends React.Component {
     })       
 }
 
- //get fetch by id as props.current
-        //use response to populate form
+// COMPONENT DID UPDATE HAS ACCESS TO PREVIOUS PROPS IS NOT THE SAME AS CURRENT PROPS THAT MEANS THAT IT CHANGED. IF ITS PREVIOUS PROPS AND CURRENT PROPS ARE THE SAME THAT MEANS THAT PROPS HAS NOT CHANGED.
 
-componentDidMount() {
-    
+componentDidUpdate(prevProps, prevState) {
+if (prevProps.editSong.id !== this.props.editSong.id) {
+// console.log(this.props.editSong);
+this.setState({
+    ...this.props.editSong
+})
+}
 }
 
 render() {
    
-    
     return (
 
-        <form onSubmit={(event)=>this.props.handleSubmit(event, this.state)}>
+        <form onSubmit={(event)=>this.props.handleUpdate(event, this.state)}>
                <h5 className="white-text ">Update your playlist & mood!</h5>
                <h6 className="lime accent-2 black-text">Songs</h6>
                <div className="">
@@ -49,7 +51,7 @@ render() {
                 name={'genre'}
                 placeholder={'Genre'}
                 type={'text'}
-                value={this.state.genre}
+                value= {this.state.genre}
                 id={'genre'}
             />
             <Input
@@ -96,13 +98,11 @@ render() {
                 value={this.state.mood_duration_percentage}
                 id={'mood_duration_percentage'}
             />
-           
-            <input className='btn lime accent-2 black-text'type='submit' value="Add" />
-           
-            <input onClick={(event) =>this.props.currentValue(event,this.props.event.currentTarget)} className='btn lime accent-2 black-text' type='submit' value="Update" />
+                      
+            <input onClick={(event) =>this.props.handleUpdate(event,this.state)} className='btn lime accent-2 black-text' type='submit' value="Update" />
         </form>
     )
 }
 }
 
-export default Form
+export default Edit_Form
