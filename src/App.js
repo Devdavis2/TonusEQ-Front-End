@@ -9,7 +9,10 @@ import Playlist from './components/Playlist';
 import Form from './components/Form.js';
 import Edit_Form from './components/edit_Form.js';
 import PieChart from './components/PieChart';
+import PieChart2 from './components/PieChart2'
+import BarChart2 from './components/BarChart2'
 import NavBar from './components/NavBar';
+import Home from './components/Home'
 
 
 
@@ -231,23 +234,23 @@ render (){
     <NavBar/>
     <div className="container blue-grey darken-3">
 
-    <Row>
-    <h5 className="white-text">Recently Played</h5>
+    <Route path="/" exact component={Home}/>
 
-    {/* <Route path="/playlist" component={<Playlist genre = {this.state.genre} deleteGenre = {this.deleteGenre}
-    handleEdit = {this.handleEdit}/>}/> */}
-  
+    <Row>  
   <Switch>
     <Row>
   <Col s={12} m={4}>
-    <Route path="/Dashboard" exact component={PieChart}/>
+    <Route path="/Dashboard" exact component={PieChart2}/>
     </Col>
 
   <Col s={12} m={8}>
     <Route path="/Dashboard" exact component={BarChart}/>
     </Col>
     </Row>
+
     </Switch>
+
+    <Route path="/Dashboard" exact component={BarChart2}/>
 
     <Col s={12} m={9} >
     <Playlist genre = {this.state.genre} deleteGenre = {this.deleteGenre}
@@ -262,16 +265,7 @@ render (){
     editSong = {this.state.editSong}/>
     </Col>
     </Row>
-    {/* <Row>
-    <br></br>
-    <Col s={12} m={6} >
-    <PieChart/>
-    </Col>
-    <Col s={12} m={6} className="grey lighten-4">
-    <BarChart />
-    <br></br>
-    </Col>
-    </Row> */}
+
     </div>
     
     

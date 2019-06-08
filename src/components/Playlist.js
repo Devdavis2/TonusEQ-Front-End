@@ -35,7 +35,7 @@ class Playlist extends Component {
 
         return (
             <div className="playlist">
-                <h5 className="lime accent-2">Work Mix </h5>
+                <h5 className=" lime accent-2">Work Mix </h5>
 
 
                 <table className=" white-text">

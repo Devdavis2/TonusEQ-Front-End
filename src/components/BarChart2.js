@@ -1,21 +1,17 @@
 import React, { Component } from 'react';
-import { Doughnut } from 'react-chartjs-2';
+import { Bar } from 'react-chartjs-2';
 
-class PieChart2 extends Component { 
+class ArtistChart2 extends Component { 
 constructor (props) {
     super(props)
     this.state = {
         chartData:{
-            labels: [ 'Excited', 'Relaxed/Chill', 'Focused', 'Stress', 'Sad'],
+            labels: [ 'Jay-z', 'Beyonce', 'Lil Nas X', 'Jimi Hendrex', 'Kanye West', 'Ariana Grande', 'Kings of Leon', 'Beastie Boys', 'Bruno Mars',],
             datasets:[
                 {
-                    label: 'Moods',
+                    label: 'Mood Duration',
                     data: [
-                        15.0,
-                        14.0,
-                        13.0,
-                        5.0,
-                        3.0
+                    5, 7, 5, 5, 4, 3, 4, 6, 6, 1,
                     ],
                 backgroundColor:[
                     `rgb(238, 255, 65)`,
@@ -33,16 +29,16 @@ constructor (props) {
 
 static defaultProps ={
     displayTitle: false,
-    displayLegend: true,
+    displayLegend: false,
     displayData: true,
 }
  
 render() {
     return(
-        <div className="chart ">
+        <div className="chart blue-grey lighten-2">
         <br></br>
-        <h5 className="lime accent-2 "> Mood State Breakdown</h5>
-        <Doughnut 
+        <h5 className="lime accent-2 "> Mood Duration by Artist</h5>
+        <Bar 
             data={this.state.chartData}
 
             options={{ 
@@ -53,7 +49,7 @@ render() {
                 },
             legend: {
                 display: this.props.displayLegend,
-                position: 'left',
+                position: 'bottom',
             },
             data: {
                 display: this.props.displayData,
@@ -67,4 +63,4 @@ render() {
 }
 }
 
-export default PieChart2
+export default ArtistChart2 
