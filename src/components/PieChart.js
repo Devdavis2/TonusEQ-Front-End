@@ -32,13 +32,13 @@ class PieChart extends Component {
             
         }
 
-        var option = {
-            scales: {
-                yAxis:[{
-                    stacked: true
-                }]
-            }
-        }
+        // var option = {
+        //     scales: {
+        //         yAxis:[{
+        //             stacked: true
+        //         }]
+        //     }
+        // }
 
         const obj = {};
     

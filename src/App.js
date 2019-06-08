@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 import './App.css';
 import 'materialize-css'; // Must use lines 3 & 4 to import materialize along with npm installs
 import 'materialize-css/dist/css/materialize.min.css';
@@ -9,6 +10,8 @@ import Form from './components/Form.js';
 import Edit_Form from './components/edit_Form.js';
 import PieChart from './components/PieChart';
 import NavBar from './components/NavBar';
+
+
 
 
 // HEROKU BUILD PACKS
@@ -223,16 +226,34 @@ deleteGenre(id) {
 render (){
   // console.log(this.state)
   return (
+    <Router>
     <div className="App blue-grey darken-3">
     <NavBar/>
     <div className="container blue-grey darken-3">
-    
+
     <Row>
     <h5 className="white-text">Recently Played</h5>
+
+    {/* <Route path="/playlist" component={<Playlist genre = {this.state.genre} deleteGenre = {this.deleteGenre}
+    handleEdit = {this.handleEdit}/>}/> */}
+  
+  <Switch>
+    <Row>
+  <Col s={12} m={4}>
+    <Route path="/Dashboard" exact component={PieChart}/>
+    </Col>
+
+  <Col s={12} m={8}>
+    <Route path="/Dashboard" exact component={BarChart}/>
+    </Col>
+    </Row>
+    </Switch>
+
     <Col s={12} m={9} >
     <Playlist genre = {this.state.genre} deleteGenre = {this.deleteGenre}
     handleEdit = {this.handleEdit}/>
     </Col>
+
     <Col s={12} m={3} >
     <Form currentValue={this.currentValue} handleSubmit = {this.handleSubmit}
     handleUpdate = {this.handleUpdate}/>
@@ -241,21 +262,21 @@ render (){
     editSong = {this.state.editSong}/>
     </Col>
     </Row>
-    <Row>
+    {/* <Row>
     <br></br>
-    <Col s={12} m={4} >
+    <Col s={12} m={6} >
     <PieChart/>
     </Col>
-    <Col s={12} m={8} className="grey lighten-4">
+    <Col s={12} m={6} className="grey lighten-4">
     <BarChart />
     <br></br>
     </Col>
-    </Row>
+    </Row> */}
     </div>
     
     
     </div>
-    
+    </Router>
   );
 }
 }
