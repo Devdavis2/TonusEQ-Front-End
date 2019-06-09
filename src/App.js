@@ -227,20 +227,24 @@ deleteGenre(id) {
 }
 
 render (){
-  // console.log(this.state)
+
   return (
     <Router>
-    <div className="App blue-grey darken-3">
+    <div className="App ">
     <NavBar/>
-    <div className="container blue-grey darken-3">
-
     <Route path="/" exact component={Home}/>
 
+    <div className="blue-grey darken-3">
+    <div className="container ">
+
+    
+
     <Row>  
-  <Switch>
+  <Switch >
     <Row>
   <Col s={12} m={4}>
     <Route path="/Dashboard" exact component={PieChart2}/>
+  
     </Col>
 
   <Col s={12} m={8}>
@@ -252,6 +256,10 @@ render (){
 
     <Route path="/Dashboard" exact component={BarChart2}/>
 
+    <Switch>
+
+    <Route path="/Playlist" exact component={Playlist} >
+    
     <Col s={12} m={9} >
     <Playlist genre = {this.state.genre} deleteGenre = {this.deleteGenre}
     handleEdit = {this.handleEdit}/>
@@ -259,16 +267,20 @@ render (){
 
     <Col s={12} m={3} >
     <Form currentValue={this.currentValue} handleSubmit = {this.handleSubmit}
-    handleUpdate = {this.handleUpdate}/>
+    handleUpdate = {this.handleUpdate}
+    handleUpdate = {this.handleUpdate}
+    editSong = {this.state.editSong}
+    />
 
-    <Edit_Form handleUpdate = {this.handleUpdate}
-    editSong = {this.state.editSong}/>
+    {/* <Edit_Form handleUpdate = {this.handleUpdate}
+    editSong = {this.state.editSong}/> */}
     </Col>
+    </Route>
+    </Switch>
     </Row>
 
     </div>
-    
-    
+    </div>
     </div>
     </Router>
   );

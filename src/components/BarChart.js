@@ -156,11 +156,11 @@ class BarChart extends Component {
     chartData.datasets.push(obj_in_Datasets)
 
     obj_in_Datasets = {label: [], data: [],
-    backgroundColor: ['rgb(213, 0, 0)']}
+        backgroundColor: ['rgb(213, 0, 0)']}
     
-    obj_in_Datasets.label.push(obj.creative.label)
-    obj_in_Datasets.data.push(obj.creative.data)
-    chartData.datasets.push(obj_in_Datasets)
+        obj_in_Datasets.label.push(obj.creative.label)
+        obj_in_Datasets.data.push(obj.creative.data)
+        chartData.datasets.push(obj_in_Datasets)
 
 
 
